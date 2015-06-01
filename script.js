@@ -4,16 +4,17 @@ console.log('lollll.');
 
 var record = document.getElementById('start');
 var stop = document.getElementById('stop');
-var audio = document.getElementById('player');
-audio.setAttribute('controls', '');
+var video = document.getElementById('player');
+video.setAttribute('controls', '');
 
 //if (navigator.getUserMedia) {
 if (true) {
   //console.log('getUserMedia supported.');
 
-  var constraints = { audio: true };
+  var constraints = { video: true };
 
   var onSuccess = function(stream) {
+    console.log("stream", stream);
     var mediaRecorder = new MediaRecorder(stream);
 
     record.onclick = function() {
@@ -29,9 +30,7 @@ if (true) {
     mediaRecorder.ondataavailable = function(e) {
       console.log("data available after MediaRecorder.stop() called.");
 
-      //var audio = document.createElement('audio');
-      var audioURL = window.URL.createObjectURL(e.data);
-      audio.src = audioURL;
+      video.src = window.URL.createObjectURL(e.data);
     }
   };
 
