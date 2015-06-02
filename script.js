@@ -12,6 +12,7 @@ var onSuccess = function(stream) {
   var mediaRecorder = new MediaRecorder(stream);
 
   record.onclick = function() {
+    chunks = [];
     mediaRecorder.start();
     console.log("recorder started");
   }
